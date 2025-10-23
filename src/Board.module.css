@@ -1,0 +1,40 @@
+.card {
+  width: 200px;
+  height: 200px;
+  margin-inline: auto;
+  position: relative;
+}
+
+.card .cover:hover {
+  background-color: rgb(180, 220, 220);
+}
+
+.card .cover {
+  height: 100%;
+  background-color: rgb(128, 128, 128);
+  transition: opacity 0.5s ease;
+}
+
+.card .cover.invisible {
+  opacity: 0;
+}
+
+
+.card .image {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+}
