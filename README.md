@@ -1,73 +1,80 @@
-# React + TypeScript + Vite
+# Memory Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A lightweight memory (concentration) card game built with React + TypeScript and Vite. This project is a small, component-driven implementation designed for learning and experimentation with modern frontend tooling.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Classic memory card matching gameplay
+- Built with React + TypeScript
+- Fast dev server with Vite
 
-## React Compiler
+## Tech stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 19
+- TypeScript
+- Vite (dev server & bundler)
+- ESLint for linting
+- Lodash (utility functions)
 
-## Expanding the ESLint configuration
+## Quick start
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Prerequisites:
+- Node.js (16+ recommended)
+- npm
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Install dependencies:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Run the dev server:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+Open http://localhost:5173 (Vite's default) in your browser.
+
+Build for production:
+
+```bash
+npm run build
+```
+
+Preview a production build locally:
+
+```bash
+npm run preview
+```
+
+Lint the project:
+
+```bash
+npm run lint
+```
+
+## Project structure
+
+Top-level files you’ll care about:
+
+- `index.html` — App entry HTML
+- `package.json` — Project metadata & scripts
+- `vite.config.ts` — Vite configuration
+- `tsconfig.json` / `tsconfig.*.json` — TypeScript config
+
+Source files (in `src/`):
+
+- `main.tsx` — App bootstrap
+- `App.tsx` — Main app component
+- `Board.tsx` — Game board logic and layout
+- `GameProvider.tsx` — Game state provider (context)
+- `ResetGameButton.tsx` — Reset control
+- `*.module.css` and `index.css` — Component and global styles
+
+## How the game works (brief)
+
+- A set of card pairs are generated and shuffled
+- The player flips two cards at a time
+- If they match, they stay revealed, otherwise they flip back
+- The game ends when all pairs are found
