@@ -1,23 +1,23 @@
 import styles from "./Board.module.css"
-import { useCardsContext, useOpenCardHandlerContext } from "./GameProvider"
+import { Card, useCards, useOpenCardHandler } from "./GameProvider"
 
-function Card({ id, imageURL, isOpened }: { id: number, imageURL: string, isOpened: boolean }) {
-  const openCardHandler = useOpenCardHandlerContext()
+function ImageCard({ card }: { card: Card }) {
+  const openCardHandler = useOpenCardHandler()
 
   return (
-    <div className={styles.card} onClick={() => openCardHandler(id)}>
-      <div className={`${styles.cover} ${isOpened ? styles.invisible : ""}`}></div>
-      <img src={imageURL} alt="" className={styles.image} />
+    <div className={styles.card} onClick={() => openCardHandler(card.id)}>
+      <div className={`${styles.cover} ${card.isOpened ? styles.invisible : ""}`}></div>
+      <img src={card.imageUrl} alt="" className={styles.image} />
     </div>
   )
 }
 
 export default function Board() {
-  const cards = useCardsContext()
+  const cards = useCards()
 
   return (
     <div className={styles.board}>
-      {cards.map(card => <Card key={card.id} {...card} />)}
+      {cards.map(card => <ImageCard key={card.id} card={card} />)}
     </div>
   )
 }
