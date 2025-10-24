@@ -1,6 +1,7 @@
 import "./App.css"
 import Board from "./Board"
 import { GameProvider } from "./GameProvider"
+import ResetGameButton from "./ResetGameButton"
 
 export default function App() {
   return (
@@ -13,8 +14,9 @@ export default function App() {
         "https://images.unsplash.com/photo-1496483648148-47c686dc86a8",
         "https://images.unsplash.com/photo-1591181520189-abcb0735c65d",
       ]}>
-        <header>
+        <header className="header">
           <h1 className="title">Memory Game</h1>
+          <ResetGameButton>Reset</ResetGameButton>
         </header>
         <main>
           <Board />

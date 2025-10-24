@@ -1,8 +1,14 @@
 .container {
-  max-width: 830px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   margin-inline: auto;
+  max-width: 830px;
 }
 
-.title {
-  text-align: center;
+.header {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
