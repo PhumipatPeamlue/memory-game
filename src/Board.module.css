@@ -19,6 +19,9 @@
   opacity: 0;
 }
 
+.card .cover.noTransition {
+  transition: none;
+}
 
 .card .image {
   display: block;

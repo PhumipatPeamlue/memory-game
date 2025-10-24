@@ -92,6 +92,7 @@ type State = {
   cards: Card[],
   cardIdMemo: CardIdMemorizer,
   event: Event,
+  isFirstRound: boolean,
 }
 
 function newInitialState(imageUrls: string[]): State {
@@ -101,6 +102,7 @@ function newInitialState(imageUrls: string[]): State {
     cards,
     cardIdMemo: new CardIdMemorizer(),
     event: null,
+    isFirstRound: true,
   }
 }
 
@@ -127,6 +129,7 @@ function openCard(state: State, targetId: string): State {
     cards,
     cardIdMemo,
     event,
+    isFirstRound: false,
   }
 }
 
@@ -144,6 +147,7 @@ function compareCards(state: State): State {
     cards,
     cardIdMemo: new CardIdMemorizer(),
     event,
+    isFirstRound: false,
   }
 }
 
@@ -234,6 +238,16 @@ export function useIsResetEvent(): boolean {
   return isResetEvent
 }
 
+const IsFirstRoundContext = createContext<boolean | null>(null)
+
+export function useIsFirstRound(): boolean {
+  const isFirstRound = useContext(IsFirstRoundContext)
+  if (isFirstRound === null) {
+    throw newUseContextError("useIsFirstRound", "IsFirstRoundContext")
+  }
+  return isFirstRound
+}
+
 // Provider Component
 export function GameProvider({ children, imageUrls }: { children: JSX.Element | JSX.Element[], imageUrls: string[] }) {
   const [game, dispatch] = useGame(imageUrls)
@@ -265,7 +279,9 @@ export function GameProvider({ children, imageUrls }: { children: JSX.Element | 
       <OpenCardHandlerContext value={newOpenCardHandler()}>
         <ResetGameHandlerContext value={newResetGameHandler()}>
           <IsResetEventContext value={isResetEvent}>
-            {children}
+            <IsFirstRoundContext value={game.isFirstRound}>
+              {children}
+            </IsFirstRoundContext>
           </IsResetEventContext>
         </ResetGameHandlerContext>
       </OpenCardHandlerContext>
