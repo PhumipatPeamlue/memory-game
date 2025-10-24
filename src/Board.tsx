@@ -6,7 +6,7 @@ function ImageCard({ card }: { card: Card }) {
   const isFirstRound = useIsFirstRound()
 
   return (
-    <div className={styles.card} onClick={() => openCardHandler(card.id)}>
+    <div className={styles.card} onClick={card.isOpened ? undefined : () => openCardHandler(card.id)}>
       <div className={`${styles.cover} ${card.isOpened ? styles.invisible : ""} ${isFirstRound ? styles.noTransition : ""}`}></div>
       <img src={card.imageUrl} alt="" className={styles.image} />
     </div>
